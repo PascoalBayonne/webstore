@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>WEB| Ecommerce Login and Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <meta name="keywords"
+          content="Cofrestru Registration Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates"/>
+    <link th:href="@{/css/signupstyle.css}" rel='stylesheet' type='text/css'/>
+    <!--webfonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,800,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Marvel:400,700' rel='stylesheet' type='text/css'>
+    <!--//webfonts-->
+</head>
+<h1>WEB| Ecommerce</h1>
+<body>
+    <form th:action="@{/signup}" method="post" th:object="${user}">
+
+        <div class="alert alert-success" th:text="${messageSuccess}" th:if="${not #strings.isEmpty(messageSuccess)}">
+                <div>
+                <button class="btn btn-primary">Login</button>
+                </div>
+         </div>
+
+         <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="detailedError : ${#fields.detailedErrors()}">
+            <span th:text="${detailedError.message}"></span>
+        </div>
+
+        </div>
+
+
+
+    <div class="registration">
+
+    <h2>Registration Form</h2>
+
+
+        <div class="form-info">
+
+                <input type="text" class="text" th:field="*{userName}" placeholder="User name" onfocus="this.value = '';"
+                   onblur="if (this.value == '') {this.value = '';}">
+
+
+                <input type="text" class="text" placeholder="Email Address" th:field="*{email}" value="Email Address" onfocus="this.value = '';"
+                   onblur="if (this.value == '') {this.value = 'Email Adress';}">
+
+                <input type="text" class="text" placeholder="Phone number" value="Phone number" th:field="*{phoneNumber}" onfocus="this.value = '';"
+                   onblur="if (this.value == '') {this.value = 'Phone number';}">
+
+
+                 <input type="password" placeholder="Password" th:field="*{password}" value="Password">
+
+            <div align="center" th:if="${param.error}">
+                <p style="font-size: 20; color: #FF1C19;">There is already a user registered with the email provided</p>
+            </div>
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="REGISTER" >
+
+    </form>
+
+    <ul class="bottom-icons">
+        <li><a href="/login">Signup With</a></li>
+        <li><a href="#" class="facebook"> </a></li>
+        <li><a href="#" class="twitter"> </a></li>
+        <li><a href="#" class="gp"> </a></li>
+        <div class="clear"></div>
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="copy-rights">
+    <p>Design by <a href="https://www.linkedin.com/in/pascoal-bayonne-99a059121/" target="_blank">Bayonne</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+
+<!--<head>-->
+<!--<title>Web| Eccomerce</title>-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--<meta name="keywords" content="Gaming Login Form Widget Tab Form,Login Forms,Sign up Forms,Registration Forms,News letter Forms,Elements"/>-->
+<!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
+<!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+
+<!--</head>-->
+
+<!--<body>-->
+	<!--<div class="padding-all">-->
+		<!--<div class="header">-->
+			<!--<h1><img src="./images/5.png" alt=" "> Gaming Login Form</h1>-->
+		<!--</div>-->
+
+		<!--<div class="design-w3l">-->
+			<!--<div class="mail-form-agile">-->
+				<!--<form action="#" method="post">-->
+					<!--<input type="text" name="name" placeholder="User Name  or  email..." required=""/>-->
+					<!--<input type="password"  name="password" class="padding" placeholder="Password" required=""/>-->
+					<!--<input type="submit" value="submit">-->
+					<!---->
+				<!--</form>-->
+				<!---->
+			<!--</div>-->
+		<!---->
+		  <!--<div class="clear"> </div>-->
+		<!--</div>-->
+		<!---->
+		<!--<div class="design-w3l">-->
+			<!--<div class="mail-form-agile">-->
+			 <!--<a href="#" ><input type="submit" value="registration"></a>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!---->
+		<!--<div class="footer">-->
+		<!--<p>© 2017 Gaming Login form. All Rights Reserved | Design by  <a href="https://www.facebook.com/pascoal.bayonne" >©Bayonne</a></p>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+	<title>WEB| Ecommerce</title>
+	<link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,700,600,300italic,300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<!-- /start-main -->
+<h1>WEB| Ecommerce Login </h1>
+<!-- /register -->
+<div class="container w3l">
+	<span title="REGISTER" class="button"> +</span>
+	<div class="content">
+		<div class="head">
+			<h3>Register</h3>
+		</div>
+		<div class="body">
+
+		</div>
+	</div>
+</div>
+<
+<div class="login-inner">
+	<div class="log-head">
+		<h2>Login</h2>
+
+	</div>
+	<div class="login-top">
+		<form th:action="@{/login}" method="post">
+			<div  align="center" th:if="${param.error}">
+				<p class="glyphicon glyphicon-exclamation-sign" style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+			</div>
+			<input type="text" name="email" class="email" placeholder="Email" />
+			<input type="password" name="password" class="password" placeholder="Password" />
+			<input type="checkbox" id="brand" value="">
+			<label for="brand"><span></span> Remember me</label>
+
+							<input class="btn btn-primary" type="submit" value="LOGIN"/>
+
+		</form>
+		<div class="clearfix"></div>
+
+	</div>
+	<div class="social-icons">
+		<ul>
+			<li><a href="#"><span class="icons"></span><span class="text">Facebook</span></a></li>
+			<li class="twt"><a href="#"><span class="icons"></span><span class="text">Twitter</span></a></li>
+			<li class="ggp"><a href="#"><span class="icons"></span><span class="text">Google+</span></a></li>
+
+			<div class="clearfix"> </div>
+		</ul>
+	</div>
+
+</div>
+<!-- //login-inner -->
+<div class="clearfix"> </div>
+<!-- /copy-right -->
+<div class="copy-right w3ls">
+	<p> © 2017 Login . All Rights Reserved | Developed by <a href="https://www.linkedin.com/in/pascoal-bayonne-99a059121/">Bayonne</a></p>
+</div>
+<!-- //copy-right -->
+<!-- //end-main -->
+</body>
+</html>

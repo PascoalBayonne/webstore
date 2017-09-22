@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WEB| Ecommerce|Dashborad</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <h3 class="container">Dashboard</h3>
+</header>
+<div class="container">
+    <form method="post" th:object="${product}" th:action="@{/dashboard/edit}" class="form-inline">
+
+        <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="detailedError : ${#fields.detailedErrors()}">
+                <span th:text="${detailedError.message}"></span>
+            </div>
+
+        </div>
+        <div class="alert alert-success"
+             th:text="${message}" th:if="${not #strings.isEmpty(message)}">
+
+        </div>
+        <input type="text" class="form-control" th:field="*{name}" placeholder="Product">
+        <br>
+        <br>
+        <input type="text" class="form-control" th:field="*{price}" placeholder="Price">
+        <br>
+        <br>
+
+        <input type="url" th:field="*{imageUrl}" class="form-control" placeholder="Paste here the image url">
+        <!--</div>  <br>-->
+
+        <br>
+        <br>
+        <textarea placeholder="Describe product here..." th:field="*{description}"></textarea><br>
+        <br>
+
+        <div class="container">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+    <div class="container">
+        <h2 th:text="${product.name}">Product</h2>
+        <h2><img th:src="${product.imageUrl}" width="200"></h2>
+
+    <table class="table table-bordered table-inverse table-hover">
+        <thead>
+        <tr>
+            <th>product name</th>
+            <th width="50px" text-align="center">price</th>
+            <th>product desc</th>
+            <th>product image</th>
+            <th width="50px">delete</th>
+            <th width="50px">edit</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product :${allProducts}">
+            <td th:text="${product.name}"></td>
+            <td th:text="|$${product.price}|"></td>
+            <td th:text="${product.description}"></td>
+            <td th:src="${product.imageUrl}"><img th:src="${product.imageUrl}" width="100"></td>
+            <!--<td><a th:href="${'/dashboard/delete/'+ product.id}"><button class="btn btn-danger">Delete</button>-->
+
+            <!--</a>-->
+            <!--</td>-->
+            <td>
+               <a th:href="${'/dashboard/delete/'+ product.id}">
+                   <input type="submit" class="btn btn-danger" th:value="delete"
+                          onclick="return confirm('Are You sure? ');"/>
+                   <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
+                <input type="hidden" th:value="${product.id}">
+            </td>
+            <td>
+                <a th:href="@{/dashboard/update/{id}(id=${product.id})} ">
+                    <input type="submit" class="btn btn-warning" th:value="update">
+                </a>
+            </td>
+        </tr>
+
+             <tr th:if="${allProducts.empty}"> <div class="alert alert-info">There is no products saved </div></tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <img th:src="@{/images/eddd.png}" alt="New york" style="width:100%;"> -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>

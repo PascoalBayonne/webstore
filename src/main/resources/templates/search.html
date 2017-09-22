@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/default}"
+       lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WEB| Ecommerce Search</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/search.css}">
+</head>
+<body>
+<form method="get" th:object="${productFilter}" th:action="@{/search}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group" id="adv-search">
+                    <input type="text" class="form-control" placeholder="Search product" th:field="*{name}"/>
+                    <div class="input-group-btn">
+                        <div class="btn-group" role="group">
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"
+                                                                                aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</form>
+<br>
+<div class="container">
+    <div th:each="product :${allProducts}" class="show-products">
+        <h2 th:text="${product.name}" style="font-size: medium"></h2>
+        <h2 th:text="|$${product.price}|" style="font-size: small"></h2>
+        <h2 class="inner-content"><img th:src="${product.imageUrl}" width="200"/></h2>
+        <br>
+
+        <button class="btn btn-primary" type="submit" >Add to cart</button>
+        <button class="btn btn-warning" type="submit" data-toggle="modal" data-target="#show-details" th:href="${'/show/one/'+product.id}">See details</button>
+        <br>
+        <br>
+
+        <div class="modal fade" id="show-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h2 th:text="${product.name}" style="font-size: medium"></h2>
+                        <h2 style="text-decoration-color: black">Description:</h2> <h2 th:text="${product.description}" style="font-size: medium"></h2>
+                        <h2 class="inner-content"><img th:src="${product.imageUrl}" width="400" height="500"/></h2>
+                        <h2 style="text-decoration-color: black">Price $</h2> <h2 th:text="|$${product.price}|" style="font-size: small"></h2>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Modal -->
+
+
+
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <img th:src="@{/images/eddd.png}" alt="New york" style="width:100%;"> -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</html>
