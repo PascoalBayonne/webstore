@@ -1,6 +1,4 @@
-body {
-    padding-top: 50px;
-}
+
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;
     padding: 6px 20px;
@@ -43,20 +41,26 @@ body {
 
     .show-products{
         border-style: dotted solid;
-        border-radius: 5px;
-        width: 400px;
-        margin: 0 auto;
+        border-radius: 15px;
+        width: 300px;
+
         margin-top: 10px;
+        margin-right: 20px;
         color: #0b648f;
         text-align: center;
+
+        display:inline-table;
+
+
 
 
     }
     .show-products:hover{
-        width: 600px;
-        color: #0b648f;
+        width: 400px;
+        color: #2E4A84;
         text-align: center;
         text-decoration: solid;
+
 
     }
 

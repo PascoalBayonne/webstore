@@ -38,13 +38,19 @@
 </form>
 <br>
 <div class="container">
+
+    <br>
     <div th:each="product :${allProducts}" class="show-products">
         <h2 th:text="${product.name}" style="font-size: medium"></h2>
         <h2 th:text="|$${product.price}|" style="font-size: small"></h2>
         <h2 class="inner-content"><img th:src="${product.imageUrl}" width="200"/></h2>
         <br>
 
-        <button class="btn btn-primary" type="submit" >Add to cart</button>
+
+
+        <button class="btn btn-primary" type="submit" style="margin-right: 12px" >Add to cart</button>
+
+
         <button class="btn btn-warning" type="submit" data-toggle="modal" data-target="#show-details" th:href="${'/show/one/'+product.id}">See details</button>
         <br>
         <br>
@@ -73,6 +79,7 @@
             </div>
         </div>
     </div>
+    <br>
 
 </div>
 

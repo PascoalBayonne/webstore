@@ -69,7 +69,8 @@
             <td th:text="${product.name}"></td>
             <td th:text="|$${product.price}|"></td>
             <td th:text="${product.description}"></td>
-            <td th:src="${product.imageUrl}"><img th:src="${product.imageUrl}" width="100"></td>
+            <td th:src="${product.imageUrl}">
+                <img th:src="${product.imageUrl}" width="100"></td>
             <!--<td><a th:href="${'/dashboard/delete/'+ product.id}"><button class="btn btn-danger">Delete</button>-->
 
             <!--</a>-->

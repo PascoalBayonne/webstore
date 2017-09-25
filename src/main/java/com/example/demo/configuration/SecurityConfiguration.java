@@ -29,11 +29,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/index").permitAll()
+		http.authorizeRequests().antMatchers("/index/**").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/signup").permitAll()
 				.antMatchers("/categories/**").permitAll()
 				.antMatchers("/search/**").permitAll()
+				.antMatchers("/cart/**").permitAll()
 				.antMatchers("/dashboard/**").hasAnyAuthority("ROLE_ADMIN,ROLE_SUPER_ADMIN")
 				.anyRequest().authenticated().and().csrf().disable()
 				.formLogin().loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/index")

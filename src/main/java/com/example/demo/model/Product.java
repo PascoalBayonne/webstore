@@ -1,4 +1,7 @@
 package com.example.demo.model;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -6,6 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Product {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -28,10 +32,9 @@ public class Product {
 	
 	@OneToMany(mappedBy ="product")
 	private List<Review> review;
-	
-	@ManyToMany
-	@JoinTable(name="product_cart", joinColumns=@JoinColumn(name="product_id"), inverseJoinColumns=@JoinColumn(name="cart_id"))
-	private List<Cart>carts;
+
+	@ManyToOne
+	private Cart cart;
 
 	@ManyToOne
 	Category category;
@@ -40,7 +43,7 @@ public class Product {
 		
 	}
 
-	public Product(String name, String description, double price, String shortDescription, byte[] image, String imageUrl, List<User> users, List<Review> review, List<Cart> carts, Category category) {
+	public Product(String name, String description, double price, String shortDescription, byte[] image, String imageUrl, List<User> users, List<Review> review, Cart cart, Category category) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -49,7 +52,7 @@ public class Product {
 		this.imageUrl = imageUrl;
 		this.users = users;
 		this.review = review;
-		this.carts = carts;
+		this.cart = cart;
 		this.category = category;
 	}
 
@@ -125,12 +128,12 @@ public class Product {
 		this.review = review;
 	}
 
-	public List<Cart> getCarts() {
-		return carts;
+	public Cart getCart() {
+		return cart;
 	}
 
-	public void setCarts(List<Cart> carts) {
-		this.carts = carts;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	public Category getCategory() {
@@ -141,3 +144,4 @@ public class Product {
 		this.category = category;
 	}
 }
+

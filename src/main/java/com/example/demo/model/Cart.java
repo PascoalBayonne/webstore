@@ -1,15 +1,9 @@
 package com.example.demo.model;
 
+import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Cart {
@@ -20,9 +14,8 @@ public class Cart {
 	private Integer quantity;
 	private Date dateAdded;
 
-	@ManyToMany
-	@JoinTable(name = "product_cart", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private List<Product> products;
+	@OneToMany(mappedBy = "cart")
+	private Set<Product> products = new HashSet<>();
 
 	@OneToOne
 	@JoinColumn(name = "user_id")
@@ -31,9 +24,8 @@ public class Cart {
 	public Cart() {
 
 	}
-	
-	public Cart(Integer quantity, Date dateAdded, List<Product> products, User user) {
-		super();
+
+	public Cart(Integer quantity, Date dateAdded, Set<Product> products, User user) {
 		this.quantity = quantity;
 		this.dateAdded = dateAdded;
 		this.products = products;
@@ -64,11 +56,13 @@ public class Cart {
 		this.dateAdded = dateAdded;
 	}
 
-	public List<Product> getProducts() {
+
+	public Set<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 
@@ -79,6 +73,4 @@ public class Cart {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	
 }

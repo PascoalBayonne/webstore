@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http//www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>WEB| Ecommerce Cart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-inverse bg-primary">
+
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/index}">
+                <lable>Ecommerce</lable>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#"><img alt="" th:src="@{/images/logo_buyonline.png}" height=35px;
+                                                    width=35px;><span class="sr-only">(current)</span></a></li>
+                <li><a href="#"><p th:inline="text">[[${#httpServletRequest.remoteUser}]]!</p></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Categories <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Mobile</a></li>
+                        <li><a href="#">Consoles</a></li>
+                        <li><a href="#">Tv's</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">See all</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">sales</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left" method="get" th:object="${productFilter}" th:action="@{/search}">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search product">
+                </div>
+                <button type="submit" class="btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span><a th:href="@{/search}"></a>Search
+                </button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/cart}"><img
+                        src="https://cdn4.iconfinder.com/data/icons/shopping-v1-1/64/shopping_cart_dollar_sign_payment_add_shop-128.png"
+                        height=35px; width=35px;></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><img
+                            src="https://cdn4.iconfinder.com/data/icons/user-icon-2/100/user-04-128.png"
+                            height=35px;
+                            width=35px;> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Profile</a></li>
+
+                        <li><a th:href="@{/dashboard/edit}" sec:autorize="hasRole('ROLE_ADMIN')">Admin</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                        <li><a href="/logout">
+                            <button type="button" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                            </button>
+                        </a></li>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container-fluid breadcrumbBox text-center">
+    <ol class="breadcrumb">
+        <li><a href="#">Review</a></li>
+        <li class="active"><a href="#">Order</a></li>
+        <li><a href="#">Payment</a></li>
+    </ol>
+</div>
+
+<div class="container text-center">
+
+    <div class="col-md-5 col-sm-12">
+        <div class="bigcart"></div>
+        <h1>Your shopping cart</h1>
+        <p>
+            <img src="https://lh5.googleusercontent.com/-SWaCREsCOUQ/AAAAAAAAAAI/AAAAAAAAAvQ/UrjFGQGj5Aw/s0-c-k-no-ns/photo.jpg"
+                 width="80px" height="80">
+        </p>
+    </div>
+
+    <div class="col-md-7 col-sm-12 text-left">
+        <div th:each="cart :${allProductsInCart}" class="show-products">
+            <h2 th:text="${cart.id}" style="font-size: medium"></h2>
+
+
+
+
+
+
+            <br>
+            <br>
+
+
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-right: 12px" >Buy now</button>
+    </div>
+
+</div>
+
+<!-- The popover content -->
+
+<div id="popover" style="display: none">
+    <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+</div>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <img th:src="@{/images/eddd.png}" alt="New york" style="width:100%;"> -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
