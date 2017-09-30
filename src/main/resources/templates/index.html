@@ -97,7 +97,7 @@
     </nav>
 
 
-    <div class="nav  navbar-left" >
+    <div class="nav  navbar-left">
 
         <!--/*@thymesVar id="email" type=""*/-->
         <!--<p class="navbar-text" th:text="${#authentication.getName().isEmpty()}">Hello</p>-->
@@ -182,12 +182,11 @@
             <br>
 
 
-            <!--<form th:object="${cart}" method="post" th:action="@{@{/cart/saveProduct}}">-->
-            <button class="btn btn-success" type="submit" style="margin-right: 12px" th:href="@{/cart}">Buy</button>
-            <!--</form>-->
-
-
-            <button class="btn btn-warning" type="submit" data-toggle="modal" data-target="#show-details">See details
+            <button class="btn btn-success" type="submit" style="margin-right: 12px">
+                <a th:href="${'/cart/'+product.id}">Buy</a>
+            </button>
+            <button class="btn btn-warning" type="submit" data-toggle="modal" data-target="#show-details">
+                <!--<a th:href="${'/product/one/'+product.id}"></a>-->See details
             </button>
             <br>
             <br>
@@ -214,7 +213,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Buy
+                            <button type="button" class="btn btn-primary"><a th:href="${'/cart/'+product.id}">Buy</a>
                             </button>
                         </div>
                     </div>

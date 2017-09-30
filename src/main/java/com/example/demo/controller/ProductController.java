@@ -6,8 +6,6 @@ import com.example.demo.repository.ProductsRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.filter.ProductFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -88,54 +86,14 @@ public class ProductController {
     }
 
 
-    @RequestMapping(value = "'/search/show/one/{id}",method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<Product> findOne(@RequestBody Product product,@PathVariable Long id){
-      Product product1  = productsRepository.findOne(id);
-        return new ResponseEntity<Product>(product1, HttpStatus.FOUND);
+    @RequestMapping(value = "'/product/one/{id}",method = RequestMethod.GET)
+    public String findOne(@PathVariable Long id){
+        productsRepository.findOne(id);
+        return "redirect:/index";
     }
 
-//
 
-//    @RequestMapping(value="/search/{productId}", method=RequestMethod.POST)
-//    public @ResponseBody Cart addProductToCart (@AuthenticationPrincipal User user,
-//                                                HttpServletRequest request, @PathVariable Long productId, ModelMap model) {
-//        Cart cart = new Cart();
-//        // if user isn't logged in, then have them login or create an account
-//        if (user == null) {
-//            return null;
-//        }
-//        else {
-//            // store cart information on user domain object
-//            user = userRepository.findOne(user.getId());
-//            Set<Product> products = new HashSet<>();
-//
-//            if (user.getCart() == null) {
-//                // create the shopping cart object and populate it with the product
-//                user.setCart(cart);
-//                cart.setUser(user);
-//
-//                cart = cartRepository.save(cart);
-//            }
-//            else {
-//                cart = user.getCart();
-//                products.addAll(cart.getProducts());
-//            }
-//
-//            Set<Cart> carts = new HashSet<>();
-//
-//            Product product = productsRepository.findOne(productId);
-//            product.setCart(carts);
-//            products.add(product);
-//
-//            cart.setProducts(products);
-//            cart.setDateAdded(new Date());
-//            carts.add(cart);
-//
-//            productsRepository.save(product);
-//        }
-//
-//        return cart;
-//    }
+
+
 
 }
