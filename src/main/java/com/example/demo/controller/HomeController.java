@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.awt.print.Pageable;
+
+
 @Controller
 public class HomeController {
 	@Autowired
@@ -18,7 +21,7 @@ public class HomeController {
 
 
 	@RequestMapping(value="/index", method= RequestMethod.GET)
-	public ModelAndView home(@AuthenticationPrincipal User user, ProductFilter productFilter){
+	public ModelAndView home(@AuthenticationPrincipal User user, ProductFilter productFilter, Pageable pageable){
 		ModelAndView modelAndView = new ModelAndView("/index");
 		modelAndView.addObject("allProducts",productsRepository.findAll());
 		return modelAndView;

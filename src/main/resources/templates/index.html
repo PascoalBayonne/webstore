@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 
-      xmlns:sec="http//www.thymeleaf.org/extras/spring-security" xmlns:width="http://www.w3.org/1999/xhtml">
+      xmlns:sec="http//www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <title>WEB| Ecommerce</title>
@@ -19,81 +19,81 @@
 </head>
 <body>
 
-<header>
+<header class="navbar">
     <nav class="navbar navbar-inverse bg-primary">
 
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <lable>Ecommerce</lable>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#"><img alt="" th:src="@{/images/logo_buyonline.png}" height=35px;
+                                                    width=35px;><span class="sr-only">(current)</span></a></li>
+                <li><a th:href="@{/cart}"><p th:inline="text">[[${#httpServletRequest.remoteUser}]]!</p></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Categories <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Mobile</a></li>
+                        <li><a href="#">Consoles</a></li>
+                        <li><a href="#">Tv's</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">See all</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">sales</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left" method="get" th:object="${productFilter}" th:action="@{/search}">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search product" th:field="*{name}">
+                </div>
+                <button type="submit" class="btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span><a th:href="@{/search}"></a>Search
                 </button>
-                <a class="navbar-brand" href="#">
-                    <lable>Ecommerce</lable>
-                </a>
-            </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/cart}"><img
+                        src="https://cdn4.iconfinder.com/data/icons/shopping-v1-1/64/shopping_cart_dollar_sign_payment_add_shop-128.png"
+                        height=35px; width=35px;></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><img
+                            src="https://cdn4.iconfinder.com/data/icons/user-icon-2/100/user-04-128.png"
+                            height=35px;
+                            width=35px;> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Profile</a></li>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#"><img alt="" th:src="@{/images/logo_buyonline.png}" height=35px;
-                                                        width=35px;><span class="sr-only">(current)</span></a></li>
-                    <li><a th:href="@{/cart}"><p th:inline="text">[[${#httpServletRequest.remoteUser}]]!</p></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Categories <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Mobile</a></li>
-                            <li><a href="#">Consoles</a></li>
-                            <li><a href="#">Tv's</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">See all</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">sales</a></li>
-                            <li><a href="#">Best Sellers</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-left" method="get" th:object="${productFilter}" th:action="@{/search}">
-
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search product" th:field="*{name}">
-                    </div>
-                    <button type="submit" class="btn btn-info">
-                        <span class="glyphicon glyphicon-search"></span><a th:href="@{/search}"></a>Search
-                    </button>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a th:href="@{/cart}"><img
-                            src="https://cdn4.iconfinder.com/data/icons/shopping-v1-1/64/shopping_cart_dollar_sign_payment_add_shop-128.png"
-                            height=35px; width=35px;></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"><img
-                                src="https://cdn4.iconfinder.com/data/icons/user-icon-2/100/user-04-128.png"
-                                height=35px;
-                                width=35px;> <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
-
-                            <li><a th:href="@{/dashboard/edit}" sec:autorize="hasRole('ROLE_ADMIN')">Admin</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                            <li><a href="/logout">
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-log-out"></span> Log out
-                                </button>
-                            </a></li>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
+                        <li><a th:href="@{/dashboard/edit}" sec:autorize="hasRole('ROLE_ADMIN')">Admin</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                        <li><a href="/logout">
+                            <button type="button" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                            </button>
+                        </a></li>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
+
     </nav>
 
 
@@ -112,8 +112,7 @@
 
 
     </div>
-
-    <div class="container" >
+    <div class="container">
         <div th:if="${param.logout}">
             <div class="alert alert-info" style=" font-family: Gabriola">
                 <h4>you are logged out
@@ -146,18 +145,20 @@
 
                 <div class="item">
                     <img src="http://www.vgchartz.com/articles_media/images/ps4-new-1.jpg" alt="Chicago"
-                          style="width: 100%; height: 500px">
+                         style="width: 100%; height: 500px">
                 </div>
 
                 <div class="item">
                     <a href="http://www.mysqltutorial.org/introduction-to-sql-stored-procedures.aspx"><img
-                            src="https://assets2.razerzone.com/images/designed-by-razer-redesign/f5ede785fabcb9009ab7ea1d35e3234f-designed-by-razer-usp2-bg.jpg" alt="Chicago"
+                            src="https://assets2.razerzone.com/images/designed-by-razer-redesign/f5ede785fabcb9009ab7ea1d35e3234f-designed-by-razer-usp2-bg.jpg"
+                            alt="Chicago"
                             style="height: inherit" style="width: 100%; height: 500px"></a>
                 </div>
 
                 <div class="item">
                     <a href="http://www.mysqltutorial.org/introduction-to-sql-stored-procedures.aspx"><img
-                            src="                https://d1urewwzb2qwii.cloudfront.net/sys-master/images/h38/hfb/8885521711134/razer-blade-pro-compare-desktop.jpg" alt="Chicago"
+                            src="                https://d1urewwzb2qwii.cloudfront.net/sys-master/images/h38/hfb/8885521711134/razer-blade-pro-compare-desktop.jpg"
+                            alt="Chicago"
                             style="height: inherit" style="width: 100%; height: 500px"></a>
                 </div>
 
@@ -182,7 +183,7 @@
 
 
             <!--<form th:object="${cart}" method="post" th:action="@{@{/cart/saveProduct}}">-->
-            <button class="btn btn-primary" type="submit" style="margin-right: 12px" th:href="@{/cart}">Buy</button>
+            <button class="btn btn-success" type="submit" style="margin-right: 12px" th:href="@{/cart}">Buy</button>
             <!--</form>-->
 
 
@@ -191,7 +192,8 @@
             <br>
             <br>
 
-            <div class="modal fade" id="show-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            <div class="modal fade" id="show-details" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLongTitle"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -201,7 +203,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body" >
+                        <div class="modal-body">
                             <h2 th:text="${product.name}" style="font-size: medium"></h2>
                             <h2 style="text-decoration-color: black">Description:</h2>
                             <h2 th:text="${product.description}" style="font-size: medium"></h2>
@@ -222,15 +224,13 @@
 
     </div>
 
+
 </header>
 
-<div class="container">
-
-</div>
 
 <footer class="footer">
-    <nav class="navbar fixed-bottom navbar-light bg-faded">
-        <a class="navbar-brand" href="#">Fixed bottom</a>
+    <nav class="navbar navbar-inverse bg-primary">
+        <H5 style="text-align: center">&copy; 2017 Coders With Attitude. All rights reserved.</H5>
     </nav>
 </footer>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

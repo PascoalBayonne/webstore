@@ -14,7 +14,73 @@
 </head>
 <body>
 <header>
-    <h3 class="container">Dashboard</h3>
+    <nav class="navbar navbar-inverse bg-primary">
+
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <lable>Ecommerce</lable>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"><img alt="" th:src="@{/images/logo_buyonline.png}" height=35px;
+                                                        width=35px;><span class="sr-only">(current)</span></a></li>
+                    <li><a th:href="@{/cart}"><p th:inline="text">[[${#httpServletRequest.remoteUser}]]!</p></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Categories <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mobile</a></li>
+                            <li><a href="#">Consoles</a></li>
+                            <li><a href="#">Tv's</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">See all</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">sales</a></li>
+                            <li><a href="#">Best Sellers</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/cart}"><img
+                            src="https://cdn4.iconfinder.com/data/icons/shopping-v1-1/64/shopping_cart_dollar_sign_payment_add_shop-128.png"
+                            height=35px; width=35px;></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><img
+                                src="https://cdn4.iconfinder.com/data/icons/user-icon-2/100/user-04-128.png"
+                                height=35px;
+                                width=35px;> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+
+                            <li><a th:href="@{/dashboard/edit}" sec:autorize="hasRole('ROLE_ADMIN')">Admin</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                            <li><a href="/logout">
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-log-out"></span> Log out
+                                </button>
+                            </a></li>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 </header>
 <div class="container">
     <form method="post" th:object="${product}" th:action="@{/dashboard/edit}" class="form-inline">
@@ -96,6 +162,7 @@
     </table>
 
 </div>
+</div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- <img th:src="@{/images/eddd.png}" alt="New york" style="width:100%;"> -->
@@ -106,4 +173,9 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 </body>
+<footer class="footer">
+    <nav class="navbar navbar-inverse bg-primary">
+        <H5 style="text-align: center">&copy; 2017 Coders With Attitude. All rights reserved.</H5>
+    </nav>
+</footer>
 </html>

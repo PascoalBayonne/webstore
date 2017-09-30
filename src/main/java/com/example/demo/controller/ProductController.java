@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.awt.print.Pageable;
 import java.util.Optional;
 
 @Controller
@@ -79,7 +80,7 @@ public class ProductController {
 
     //ALL USERS
     @GetMapping("/search")
-    public ModelAndView search(ProductFilter productFilter){
+    public ModelAndView search(ProductFilter productFilter, Pageable pageable){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("allProducts",productsRepository.findByNameContainingIgnoreCase(
                 Optional.ofNullable(productFilter.getName()).orElse("%")));//if there is null it will search all products
