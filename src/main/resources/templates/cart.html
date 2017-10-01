@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+
       xmlns:sec="http//www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>WEB| Ecommerce Cart</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" type="text/css" th:href="@{/css/custom.css}"/>
+    <meta charset="utf-8">
+    <title>WEB| Ecommerce</title>
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/search.css}">
 </head>
-
 <body>
 
 
@@ -39,7 +42,9 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#"><img alt="" th:src="@{/images/logo_buyonline.png}" height=35px;
                                                     width=35px;><span class="sr-only">(current)</span></a></li>
-                <li><a href="#"><p th:inline="text">[[${#httpServletRequest.remoteUser}]]!</p></a></li>
+                <li><a href="#">
+                    <span th:utext="${userName}"></span>
+                </a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Categories <span class="caret"></span></a>
@@ -93,12 +98,16 @@
 </nav>
 
 
-<div class="container-fluid breadcrumbBox text-center">
+<div class="container">
     <ol class="breadcrumb">
         <li><a href="#">Review</a></li>
         <li class="active"><a href="#">Order</a></li>
         <li><a href="#">Payment</a></li>
     </ol>
+    <span class="label label-success" th:utext="${adminMessage}"></span>
+    <div class="label label-success">
+        <span th:utext="${userName}"></span>
+    </div>
 </div>
 
 <div class="container text-center">
@@ -110,41 +119,47 @@
             <img src="https://lh5.googleusercontent.com/-SWaCREsCOUQ/AAAAAAAAAAI/AAAAAAAAAvQ/UrjFGQGj5Aw/s0-c-k-no-ns/photo.jpg"
                  width="80px" height="80">
         </p>
+        <button class="btn btn-primary">Order Now</button>
+        <br>
+        <div>
+            <p> <b>Protect your online payment data.</b>
+                With the G2A Wallet you can shop safely within the entire G2A Ecosystem.
+                Deposit funds for free, check your balance from all devices and make easy currency exchanges.</p>
+        </div>
     </div>
 
 
 
-    <!--<div class="col-md-7 col-sm-12 text-left">-->
-        <!--<div th:each="cart :${productsInCart}" class="show-products">-->
-            <!--<h2 th:text="${cart.id}" style="font-size: medium"></h2>-->
-            <!--<h2 th:text="${cart.image}" style="font-size: medium"></h2>-->
+    <div class="col-md-7 col-sm-12 text-left">
+        <div th:each="cart :${allProducts}" class="show-products">
+            <h2 th:text="${cart.name}" style="font-size: medium"></h2>
+            <h2 style="text-decoration-color: black">Description:</h2>
+            <h2 th:text="${cart.description}" style="font-size: medium"></h2>
+            <h2 class="inner-content"><img th:src="${cart.imageUrl}" width="400" height="500"/></h2>
+            <h2 style="text-decoration-color: black">Price $</h2>
+            <h2 th:text="|$${cart.price}|" style="font-size: small"></h2>
+
+        </div>
+    </div>
 
 
-            <!--<br>-->
-            <!--<br>-->
+
+    <!-- The popover content -->
+
+    <div id="popover" style="display: none">
+        <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+    </div>
 
 
-        <!--</div>-->
-        <!--<button class="btn btn-primary" type="submit" style="margin-right: 12px" >Buy now</button>-->
-    <!--</div>-->
-
-</div>
-
-<!-- The popover content -->
-
-<div id="popover" style="display: none">
-    <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-    <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-</div>
-
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- <img th:src="@{/images/eddd.png}" alt="New york" style="width:100%;"> -->
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <img th:src="@{/images/eddd.png}" alt="New york" style="width:100%;"> -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 </body>
+
 </html>

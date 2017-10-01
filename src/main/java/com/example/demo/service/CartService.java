@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.model.User;
-
 import java.security.Principal;
 
 /**
@@ -10,5 +8,5 @@ import java.security.Principal;
 public interface CartService {
 
     void addToCart(long idProduct, Principal principal);
-    User showProductsInCart(Principal principal);
+//    User showProductsInCart(long idProduct, Principal principal);
 }

@@ -37,7 +37,6 @@ public class UserServiceImplementation implements UserService, UserDetailsServic
 
     @Override
     public User findUserByEmail(String email) {
-
         return userRepository.findByEmail(email);
     }
 
