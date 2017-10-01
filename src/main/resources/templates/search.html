@@ -124,7 +124,8 @@
 
 
 
-        <button class="btn btn-primary" type="submit" style="margin-right: 12px" >Add to cart</button>
+        <button class="btn btn-primary" type="submit" style="margin-right: 12px" >
+            <a th:href="${'/cart/'+product.id}" sec:autorize="hasRole('ROLE_USER')">Buy</a></button>
 
 
         <button class="btn btn-warning" type="submit" data-toggle="modal" data-target="#show-details" th:href="${'/show/one/'+product.id}">See details</button>
@@ -149,7 +150,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add to cart</button>
+                        <button type="button" class="btn btn-primary">
+                            <a th:href="${'/cart/'+product.id}" sec:autorize="hasRole('ROLE_USER')">Buy</a></button>
                     </div>
                 </div>
             </div>

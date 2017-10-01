@@ -42,3 +42,29 @@ body { margin-top:20px; }
 .credit-card-box .panel-heading img {
     min-width: 180px;
 }
+
+
+.show-products{
+    border-style: dotted solid;
+    border-radius: 15px;
+    width: 300px;
+
+    margin-top: 10px;
+    margin-right: 20px;
+    color: green;
+    text-align: center;
+
+    display:inline-table;
+
+
+
+
+}
+.show-products:hover{
+    width: 400px;
+    color: #2E4A84;
+    text-align: center;
+    text-decoration: solid;
+
+
+}

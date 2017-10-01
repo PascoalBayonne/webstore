@@ -52,7 +52,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.com">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>WEB| Ecommerce</title>
 	<link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
@@ -61,14 +61,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,700,600,300italic,300' rel='stylesheet' type='text/css'>
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		  integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 
 <body>
 <!-- /start-main -->
-<h1>WEB| Ecommerce Login </h1>
+<h1>
+	WEB| Ecommerce Login
+</h1>
 <!-- /register -->
+
+
+
 <div class="container w3l">
-	<span title="REGISTER" class="button"> +</span>
+	<span title="REGISTER" class="button">+</span>
 	<div class="content">
 		<div class="head">
 			<h3>Register</h3>
@@ -78,7 +86,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</div>
 </div>
-<
+
 <div class="login-inner">
 	<div class="log-head">
 		<h2>Login</h2>
@@ -96,7 +104,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 							<input class="btn btn-primary" type="submit" value="LOGIN"/>
 
+			<div>
+				<button class="btn btn-primary"><a th:href="@{/signup}">Registration</a></button>
+			</div>
 		</form>
+
 		<div class="clearfix"></div>
 
 	</div>
