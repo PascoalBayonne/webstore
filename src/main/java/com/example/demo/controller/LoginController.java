@@ -4,7 +4,10 @@ import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller //@Controller is used to mark classes as Spring MVC Controller.
@@ -29,7 +34,7 @@ public class LoginController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView signup(User user) {
-        ModelAndView modelAndView = new ModelAndView("/registration"); //name of my view registration.html with object gathered
+        ModelAndView modelAndView = new ModelAndView("registration"); //name of my view registration.html with object gathered
         return modelAndView;
     }
 
@@ -50,7 +55,7 @@ public class LoginController {
             //this interface RedirectAttributes helps us to propagate a message to our view.
             mv.addObject("user", new User());
         }
-        return new ModelAndView("redirect:/signup");
+        return new ModelAndView("redirect:/login");
     }
 
 

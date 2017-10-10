@@ -31,7 +31,6 @@ public class CartServiceImplementation implements CartService {
 
     @Override
     public void addToCart(long idProduct, Principal principal) {
-
         try {
             User user = userRepository.findByEmail(principal.getName());
             Product product = productsRepository.getOne(idProduct);
@@ -39,22 +38,10 @@ public class CartServiceImplementation implements CartService {
             userRepository.save(user);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getCause());
         }
-
-
     }
 
 
-
-//    @Override
-//    public User showProductsInCart() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.findUserByEmail(auth.getName());
-//        List<Product> productList = productsRepository.findAll();
-//        user.setProducts(productList);
-//        return user;
-//    }
 
 
 }

@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" th:href="@{/}">
                 <lable>Ecommerce</lable>
             </a>
         </div>
@@ -76,22 +76,41 @@
                             height=35px;
                             width=35px;> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
+                        <li><a th:href="@{/cart}">Profile</a></li>
 
-                        <li><a th:href="@{/dashboard/edit}" sec:autorize="hasRole('ROLE_ADMIN')">Admin</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')">
+                            <a th:href="@{/dashboard/edit}" sec:authorize="hasRole('ROLE_ADMIN')" >Admin</a>
+                        </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                        <li><a href="/logout">
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-log-out"></span> Log out
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" >
+                            <a th:href="@{/logout}" >
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                                </button>
+                            </a>
+                        </li>
+                        <li sec:authorize="hasRole('ROLE_USER')" >
+                            <a th:href="@{/logout}" >
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                                </button>
+                            </a>
+                        </li>
+
+                        <li sec:authorize="not hasRole('ROLE_USER')" ><a th:href="@{/login}">
+
+                            <button type="button" class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-log-in"></span> Log  in
                             </button>
                         </a></li>
-                        </li>
+
                     </ul>
                 </li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+            <!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+
 </nav>
 <form method="get" th:object="${productFilter}" th:action="@{/search}">
     <div class="container">
@@ -132,7 +151,9 @@
         <br>
         <br>
 
-        <div class="modal fade" id="show-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="show-details" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLongTitle"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -143,15 +164,20 @@
                     </div>
                     <div class="modal-body">
                         <h2 th:text="${product.name}" style="font-size: medium"></h2>
-                        <h2 style="text-decoration-color: black">Description:</h2> <h2 th:text="${product.description}" style="font-size: medium"></h2>
+                        <h2 style="text-decoration-color: black">Description:</h2>
+                        <h2 th:text="${product.description}" style="font-size: medium"></h2>
                         <h2 class="inner-content"><img th:src="${product.imageUrl}" width="400" height="500"/></h2>
-                        <h2 style="text-decoration-color: black">Price $</h2> <h2 th:text="|$${product.price}|" style="font-size: small"></h2>
+                        <h2 style="text-decoration-color: black">Price $</h2>
+                        <h2 th:text="|$${product.price}|" style="font-size: small"></h2>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">
-                            <a th:href="${'/cart/'+product.id}" sec:autorize="hasRole('ROLE_USER')">Buy</a></button>
+                            <a th:href="${'/cart/'+product.id}" sec:autorize="hasRole('ROLE_USER')"><img
+                                    src="https://cdn4.iconfinder.com/data/icons/shopping-v1-1/64/shopping_cart_dollar_sign_payment_add_shop-128.png"
+                                    height=35px; width=35px;></a>BUY
+                        </button>
                     </div>
                 </div>
             </div>

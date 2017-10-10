@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       xmlns:sec="http//www.thymeleaf.org/extras/spring-security"
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,7 +18,11 @@
 </head>
 <body>
 
+<!--<div class="container">-->
+
+
 <header class="navbar">
+
     <nav class="navbar navbar-inverse bg-primary">
 
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,17 +34,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" th:href="@{/index}">
+            <a class="navbar-brand" th:href="@{/}">
                 <lable>Ecommerce</lable>
+
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><img alt="" th:src="@{/images/logo_buyonline.png}" height=35px;
-                                                    width=35px;><span class="sr-only">(current)</span></a></li>
-                <li><a th:href="@{/cart}"><p th:inline="text">[[${#httpServletRequest.remoteUser}]]!</p></a></li>
+
+                <li><a th:href="@{/cart}">
+                    <span th:utext="${userName}"></span></a></li>
+
+
+
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Categories <span class="caret"></span></a>
@@ -79,32 +87,46 @@
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/cart}">Profile</a></li>
 
-                        <li><a th:href="@{/dashboard/edit}" sec:autorize="hasRole('ROLE_ADMIN')">Admin</a></li>
-                        <li role="separator" class="divider"></li>
                         <li>
-                        <li><a th:href="@{/logout}" sec:autorize="hasRole('ROLE_ADMIN','ROLE_USER','ROLE_SUPER_ADMIN')">
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-log-out"></span> Log out
-                            </button>
-                        </a></li>
+                        <a th:href="@{/dashboard/edit}" sec:authorize="hasRole('ROLE_ADMIN')" >Admin</a>
                         </li>
+
+                        <li role="separator" class="divider"></li>
+
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" >
+                            <a th:href="@{/logout}" >
+                                <button type="button" class="btn btn-danger btn-sm">
+                                     <span class="glyphicon glyphicon-log-out"></span> Logout
+                                 </button>
+                             </a>
+                        </li>
+
+                        <li sec:authorize="hasRole('ROLE_USER')" >
+                            <a th:href="@{/logout}" >
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                                </button>
+                            </a>
+                        </li>
+
+                        <li sec:authorize="not hasRole('ROLE_USER')" ><a th:href="@{/login}">
+
+                            <button sec:authorize="not hasRole('ROLE_ADMIN')" type="button" class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-log-in"></span> Log  in
+                            </button>
+                        </a>
+                        </li>
+
                     </ul>
-                </li>
+
             </ul>
             <!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
 
     </nav>
 
-
     <div class="container">
-        <div th:if="${param.logout}">
-            <div class="alert alert-info" style=" font-family: Gabriola">
-                <h4>you are logged out
-                    <li><a th:href="@{/login}"><img src="/images/login-icon.png" height="28" width="28"></a>
-                </h4>
-            </div>
-        </div>
+
 
         <h2></h2>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -142,13 +164,14 @@
                             alt="Chicago"
                             style="height: inherit" style="width: 100%; height: 500px"></a>
                 </div>
-
                 <div class="item">
                     <a th:href="@{/search}"><img
-                            src="https://www.wired.de/sites/default/files/styles/1500x750/public/apple-airpods-iphone.jpg?itok=gPyzNrEt"
+                            src="https://media.playstation.com/is/image/SCEA/playstation-4-pro-greatness-awaits-flow-logo-01-us-07sep16?$BackgroundFeature_Large$"
                             alt="Chicago"
                             style="height: inherit" style="width: 100%; height: 500px"></a>
                 </div>
+
+
 
             </div>
 
@@ -170,11 +193,16 @@
             <br>
 
 
-            <button class="btn btn-success" type="submit" style="margin-right: 12px">
-                <a th:href="${'/cart/'+product.id}" sec:autorize="hasRole('ROLE_USER')">Buy</a>
+            <button class="btn btn-info" type="submit" style="margin-right: 12px">
+                <a  th:href="${'/cart/'+product.id}" sec:autorize="hasRole('ROLE_USER')" ><img
+                        src="https://cdn4.iconfinder.com/data/icons/shopping-v1-1/64/shopping_cart_dollar_sign_payment_add_shop-128.png"
+                        height=35px; width=35px;> BUY</a>
             </button>
-            <button class="btn btn-warning" type="submit" data-toggle="modal" data-target="#show-details">
-                <!--<a th:href="${'/product/one/'+product.id}"></a>-->See details
+            <button class="btn btn-default" type="submit" data-toggle="modal" data-target="#show-details">
+                <img
+                        src="http://findicons.com/files/icons/1786/oxygen_refit/128/view_details.png"
+                        height=35px; width=35px;>
+                <!--<a th:href="${'/product/one/'+product.id}"></a>-->
             </button>
             <br>
             <br>
@@ -202,7 +230,9 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">
-                                <a th:href="${'/cart/'+product.id}" sec:autorize="hasRole('ROLE_USER')">Buy</a>
+                                <a th:href="${'/cart/'+product.id}" sec:autorize="hasRole('ROLE_USER')"><img
+                                        src="https://cdn4.iconfinder.com/data/icons/shopping-v1-1/64/shopping_cart_dollar_sign_payment_add_shop-128.png"
+                                        height=35px; width=35px;></a>BUY
                             </button>
                         </div>
                     </div>
@@ -216,10 +246,8 @@
 </header>
 
 
-<footer class="footer">
-    <nav class="navbar navbar-inverse bg-primary">
-        <H5 style="text-align: center">&copy; 2017 Coders With Attitude. All rights reserved.</H5>
-    </nav>
+<footer>
+        <H5 style="text-align: center">&copy; 2017 Pascoal Bayonne. All rights reserved.</H5>
 </footer>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- <img th:src="@{/images/eddd.png}" alt="New york" style="width:100%;"> -->
