@@ -7,6 +7,6 @@ import java.security.Principal;
  */
 public interface CartService {
 
-    void addToCart(long idProduct, Principal principal);
-//    User showProductsInCart(long idProduct, Principal principal);
+    void addToCart(long idProduct, Principal principal); //The principal is the currently logged in user. Spring Security
+    void removeProductInCart(long idProduct,Principal principal);
 }

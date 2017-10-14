@@ -41,7 +41,17 @@ public class CartServiceImplementation implements CartService {
         }
     }
 
-
+    @Override
+    public void removeProductInCart(long idProduct, Principal principal) {
+        User user = userRepository.findByEmail(principal.getName());//return the name of this principal.
+        Product product = productsRepository.getOne(idProduct);
+        for (Product product1 : user.getProducts()){
+            if(product1.getId() == product.getId()){
+                user.getProducts().remove(product1);
+                return;
+            }
+        }
+    }
 
 
 }
