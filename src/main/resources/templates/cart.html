@@ -218,7 +218,10 @@
                     </div>
                 </div>
                 <!-- CREDIT CARD FORM ENDS HERE -->
+                <div class="alert alert-danger"
+                     th:text="${message}" th:if="${not #strings.isEmpty(message)}">
 
+                </div>
 
             </div>
 
@@ -232,6 +235,12 @@
                         <h2 style="text-decoration-color: black">Price $</h2>
                         <h2 th:text="|$${cart.price}|" style="font-size: small"></h2>
 
+                        <a th:href="${'/cart/delete/'+ cart.id}"><input type="submit" class="btn btn-danger" value="remove"
+                            onclick="return confirm('Are You sure? The product will be removed from cart ');"/>
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+
+                        <!--<input type="hidden" th:value="${product.id}">-->
                     </div>
                 </div>
 

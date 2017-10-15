@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Cart;
+import com.example.demo.model.Product;
 import com.example.demo.model.User;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ProductsRepository;
@@ -12,9 +14,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -29,11 +31,6 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @Autowired
-    private ProductsRepository productsRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private UserService userService;
@@ -53,6 +50,16 @@ public class CartController {
     @GetMapping("/cart/{idProduct}")
     public String addToCart(Model model, @PathVariable long idProduct, Principal principal) {
        cartService.addToCart(idProduct,principal);
+        return "redirect:/cart";
+    }
+
+
+    @RequestMapping( value = "/cart/delete/{idProduct}")
+    public String removeFromCart(@PathVariable long idProduct, Principal principal, RedirectAttributes redirectAttributes){
+
+        cartService.removeProductInCart(idProduct,principal);
+        redirectAttributes.addFlashAttribute("message","You have removed the product from Your cart");
+        //RedirectAttributes : You can use RedirectAttributes to store flash attributes and they will be automatically propagated to the "output" FlashMap of the current request.
         return "redirect:/cart";
     }
 

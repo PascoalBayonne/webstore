@@ -9,6 +9,7 @@ import com.example.demo.service.CartService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 
@@ -42,6 +43,7 @@ public class CartServiceImplementation implements CartService {
     }
 
     @Override
+    @Transactional
     public void removeProductInCart(long idProduct, Principal principal) {
         User user = userRepository.findByEmail(principal.getName());//return the name of this principal.
         Product product = productsRepository.getOne(idProduct);
