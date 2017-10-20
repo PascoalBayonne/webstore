@@ -15,7 +15,7 @@ import java.util.List;
 public interface ProductsRepository extends JpaRepository<Product, Long>{
 
     List<Product> findByNameContainingIgnoreCase(String name);
-    List<Product> findAllByPrice(Double price);
+    List<Product> findProductsByPrice(Double price);
     Page<Product> findAll(Pageable pageable);
 
 }

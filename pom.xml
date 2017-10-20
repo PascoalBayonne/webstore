@@ -9,7 +9,12 @@
 	<packaging>jar</packaging>
 
 	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<description>An application (E-commerce) built with Java
+		(Spring,Spring Boot, Spring MVC,
+		Security, JavaMailSender, JPA and Hibernate,
+		Thymeleaf, MySql, Html 5/ CSS3 ,Bootstrap)
+		Demo project for Spring Boot
+	</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

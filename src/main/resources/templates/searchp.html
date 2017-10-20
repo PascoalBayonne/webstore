@@ -18,6 +18,7 @@
     <link rel="stylesheet" th:href="@{/css/search.css}">
 </head>
 <body>
+
 <nav class="navbar navbar-inverse bg-primary">
 
     <div class="container-fluid">
@@ -112,14 +113,18 @@
         </div><!-- /.container-fluid -->
     </div>
 </nav>
+
+
+
 <form method="get" th:object="${productFilter}" th:action="@{/searchp}">
-
+    hhhqhhqhhahaha
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="input-group" id="adv-search">
 
-                    <span class="currencyinput">$<input type="text" name="currency" th:field="*{price}"><button class="btn btn-default">find $</button></span>
+
+                    <input type="text" class="form-control" placeholder="Search product by price" th:field="*{price}"/>
 
                 </div>
             </div>
@@ -128,27 +133,8 @@
     </div>
 
 </form>
-<form method="get" th:object="${productFilter}" th:action="@{/search}">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="input-group" id="adv-search">
-                    <input type="text" class="form-control" placeholder="Search product" th:field="*{name}"/>
 
 
-                    <div class="input-group-btn">
-                        <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"
-                                                                                aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-</form>
 
 
 <br>
@@ -159,7 +145,7 @@
 
     <br>
     <div th:each="product :${allProducts}" class="show-products">
-
+        <tr th:if="${param.empty}"> <div class="alert alert-info">No Product found</div></tr>
         <h2 th:text="${product.name}" style="font-size: medium"></h2>
         <h2 th:text="|$${product.price}|" style="font-size: small"></h2>
         <h2 class="inner-content"><img th:src="${product.imageUrl}" width="200" height="200px"/></h2>
@@ -265,6 +251,7 @@
 </div>
 <!--<tr th:if="${param.empty}"> <div class="alert alert-info">No Product found</div></tr>-->
 
+<!-- Modal -->
 </body>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -33,6 +33,9 @@ public class CartServiceImplementation implements CartService {
     @Override
     public void addToCart(long idProduct, Principal principal) {
         try {
+            /*This interface "Principal" represents the abstract notion of a principal, which
+            *  can be used to represent any entity, such as an individual, a
+            * corporation, and a login id. So in my case here principal is the current user (user logged in my system)*/
             User user = userRepository.findByEmail(principal.getName());
             Product product = productsRepository.getOne(idProduct);
             user.getProducts().add(product);
@@ -50,7 +53,7 @@ public class CartServiceImplementation implements CartService {
         for (Product product1 : user.getProducts()){
             if(product1.getId() == product.getId()){
                 user.getProducts().remove(product1);
-                return;
+                    return;
             }
         }
     }

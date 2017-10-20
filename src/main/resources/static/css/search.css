@@ -79,6 +79,11 @@
 
 
     }
+    .currencyinput {
+        border: 13px inset #ccc;
+
+    }
+
     /*.btn-default:hover{*/
         /*background-color: #5cb85c;*/
     /*}*/
@@ -90,5 +95,7 @@
             height:60px;   /* Height of the footer */
             background:#6cf;
         }
+
+
 
 }

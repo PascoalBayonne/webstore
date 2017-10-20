@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class ProductServiceImple implements ProductService{
@@ -17,5 +19,10 @@ public class ProductServiceImple implements ProductService{
     @Override
     public Page<Product> findAll(Pageable pageable) {
         return productsRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Product> findProductByPrice(Double price) {
+        return productsRepository.findProductsByPrice(price);
     }
 }
