@@ -127,6 +127,8 @@
     <span class="label label-success" th:utext="${adminMessage}"></span>
     <div class="label label-success">
         <span th:utext="${userName}"></span>
+    </div><div class="label label-success">
+        <span th:utext="${totalPrice}"></span>
     </div>
 </div>
 
@@ -222,7 +224,11 @@
                      th:text="${message}" th:if="${not #strings.isEmpty(message)}">
 
                 </div>
+                <p class="alert alert-success" >$ Total Price:
+                <div class="alert alert-warning"  th:text="${totalPrice}">
 
+                </div>
+            </p>
             </div>
 
             <div class="col-xs-12 col-md-8" style="font-size: 12pt; line-height: 2em;">

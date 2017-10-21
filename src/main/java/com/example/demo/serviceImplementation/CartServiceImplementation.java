@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * Created by Admin1 on 9/23/2017.
@@ -56,6 +57,18 @@ public class CartServiceImplementation implements CartService {
                     return;
             }
         }
+    }
+
+    @Override
+    public double totalPrice(Product product, Principal principal) {
+        User user = userRepository.findByEmail(principal.getName());
+        List<Product> product1 = productsRepository.findAll();
+        double price = 0;
+        for (Product product2 : user.getProducts()){
+            price = price+product2.getPrice();
+        }
+        return price;
+        //this method returns the sum of all current user's products in the cart
     }
 
 

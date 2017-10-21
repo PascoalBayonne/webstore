@@ -36,13 +36,14 @@ public class CartController {
     private UserService userService;
 
     @GetMapping(value = "/cart")
-    public ModelAndView cart(ProductFilter productFilter){
+    public ModelAndView cart(ProductFilter productFilter,Product product,Principal principal){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();// security context is in the session and contains user/principal and roles/authorities.
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("userName", "Welcome " + user.getUserName());
         modelAndView.addObject("adminMessage","Content Available Only for Authenticated Users");
         modelAndView.addObject("allProducts",user.getProducts());
+        modelAndView.addObject("totalPrice",cartService.totalPrice(product,principal));
         modelAndView.setViewName("/cart");
         return modelAndView;
     }
@@ -68,6 +69,8 @@ public class CartController {
     public String payment(){
         return "payment";
     }
+
+
 
 
 
