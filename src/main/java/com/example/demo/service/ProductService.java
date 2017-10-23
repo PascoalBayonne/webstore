@@ -12,4 +12,5 @@ import java.util.List;
 public interface ProductService {
     Page<Product> findAll(Pageable pageable);
     List<Product> findProductByPrice(Double price);
+    List<Product> findByPriceLessThanEqual(Double price);
 }

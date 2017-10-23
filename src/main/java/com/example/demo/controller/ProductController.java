@@ -85,7 +85,6 @@ public class ProductController {
                 /*Optional :A container object which may or may not contain a non-{@code null} value.
                 * If a value is present, {@code isPresent()} returns {@code true} and
                 * {@code get()} returns the value.*/
-       // modelAndView.addObject("getProductsByPrice",productsRepository.findProductsByPrice(productFilter.getPrice()));
 
         return modelAndView;
     }
@@ -102,26 +101,18 @@ public class ProductController {
         return modelAndView;
     }
 
-//    @GetMapping("/search/price")
-//    public ModelAndView searchPrice(ProductFilter productFilter) {
-//        ModelAndView modelAndView = new ModelAndView("searchp");
-//
-//        modelAndView.addObject("getProductsByPrice",productsRepository.findProductsByPrice(productFilter.getPrice()));
-//
-//
-//        return new ModelAndView("searchp");
-//    }
+    @GetMapping(value = "/search/less/{price}")
+    public ModelAndView findByPriceLessThan(@PathVariable Double price,ProductFilter productFilter){
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("findByLesThan",productService.findProductByPrice(price));
+        return new ModelAndView("redirect:/searchp");
+    }
+
      /*   An @ModelAttribute on a method argument indicates the argument should be retrieved from the model. If not present in the model,
        the argument should be instantiated first and then added to the model.
        Once present in the model, the argument's fields should be populated from all request parameters that have matching names.
       */
-
-//    @RequestMapping(value = "/search/price", method = RequestMethod.GET)
-//    public ModelAndView findProductByPrice(ProductFilter productFilter, @PathVariable Double price) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("getProductsByPrice",productsRepository.findProductsByPrice(productFilter.getPrice()));
-//        return new ModelAndView("redirect:/searchp");
-//    }
 
 
     @RequestMapping(value = "'/product/one/{id}", method = RequestMethod.GET)

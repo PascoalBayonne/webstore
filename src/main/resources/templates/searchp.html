@@ -114,7 +114,7 @@
     </div>
 </nav>
 
-
+dsdsds
 
 <form method="get" th:object="${productFilter}" th:action="@{/searchp}">
     hhhqhhqhhahaha
@@ -137,6 +137,7 @@
 
 
 
+
 <br>
 
 <br>
@@ -145,7 +146,7 @@
 
     <br>
     <div th:each="product :${allProducts}" class="show-products">
-        <tr th:if="${param.empty}"> <div class="alert alert-info">No Product found</div></tr>
+        <tr th:if="${allProducts.empty}"> <div class="alert alert-info">No Product found</div></tr>
         <h2 th:text="${product.name}" style="font-size: medium"></h2>
         <h2 th:text="|$${product.price}|" style="font-size: small"></h2>
         <h2 class="inner-content"><img th:src="${product.imageUrl}" width="200" height="200px"/></h2>

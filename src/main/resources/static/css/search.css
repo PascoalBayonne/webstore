@@ -72,8 +72,8 @@
         border-color: black;
     }
     .show-products:hover{
-        width: 400px;
-        color: #2E4A84;
+        width: 300px;
+        color: grey;
         text-align: center;
         text-decoration: solid;
 
@@ -95,7 +95,9 @@
             height:60px;   /* Height of the footer */
             background:#6cf;
         }
-
+    .navbar-fixed-side-left {
+        left: 0;
+    }
 
 
 }

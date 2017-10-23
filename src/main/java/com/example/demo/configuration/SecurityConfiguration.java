@@ -60,8 +60,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
 	}
-//	@Bean
-//	public SpringSecurityDialect springSecurityDialect(){
-//		return new SpringSecurityDialect();
-//	}
+
 }

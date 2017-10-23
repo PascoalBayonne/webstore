@@ -25,4 +25,10 @@ public class ProductServiceImple implements ProductService{
     public List<Product> findProductByPrice(Double price) {
         return productsRepository.findProductsByPrice(price);
     }
+
+    @Override
+    public List<Product> findByPriceLessThanEqual(Double price) {
+        return productsRepository.findByPriceLessThanEqual(price);
+    }
+
 }
